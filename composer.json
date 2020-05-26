@@ -1,0 +1,25 @@
+{
+    "name": "iam-adty/php-component-page",
+    "description": "Page from PHP Component",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bagus A Priambada",
+            "email": "iam.adty@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "iam-adty/php-component": "dev-develop"
+    },
+    "require-dev": {
+        "kint-php/kint": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "IamAdty\\Component\\": "src/"
+        }
+    }
+}
