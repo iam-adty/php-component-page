@@ -12,85 +12,43 @@ use IamAdty\Variable\Rule\ToArray;
 
 class Page extends Component
 {
-    protected $title = "";
+    protected $title = "PHP Component";
 
-    /**
-     * @return Html
-     */
-    protected function _html()
+    protected $html = null;
+    protected $htmlHead = null;
+    protected $htmlBody = null;
+
+    protected function _paramType()
     {
-        return Html::build(
-            $this->_htmlHead(),
-            $this->_htmlBody()
-        );
+        return parent::_paramType() + [
+            'html' => Html::class
+        ];
     }
 
-    /**
-     * @return Head
-     */
-    protected function _htmlHead()
+    public function __construct(...$params)
     {
-        return Head::build(
-            Title::build(
-                Text::write($this->title)
-            ),
-            ...Variable::from($this->_htmlHeadMeta())->filter(
-                ToArray::create()
-            )->getValue(),
-            ...Variable::from($this->_htmlHeadStyle())->filter(
-                ToArray::create()
-            )->getValue()
-        );
-    }
+        parent::__construct(...$params);
 
-    /**
-     * @return Meta[]
-     */
-    protected function _htmlHeadMeta()
-    {
-        return [];
-    }
+        // $this->children = [
+        //     Variable::from($this->_html())->default(
+        //         Html::build(
+        //             Variable::from($this->_htmlHead())->default(
+        //                 Head::build(
+        //                     Title::build(
+        //                         Text::write($this->title)
+        //                     ),
 
-    /**
-     * @return Style[]
-     */
-    protected function _htmlHeadStyle()
-    {
-        return [];
-    }
-
-    /**
-     * @return Body
-     */
-    protected function _htmlBody(...$params)
-    {
-        return Body::build(
-            ...$params,
-            ...Variable::from($this->_htmlBodyContentWrapper())->filter(
-                ToArray::create()
-            )->getValue(),
-            ...Variable::from($this->_htmlBodyScript())->filter(
-                ToArray::create()
-            )->getValue()
-        );
-    }
-
-    /**
-     * @return Script[]
-     */
-    protected function _htmlBodyScript()
-    {
-        return [];
-    }
-
-    protected function _htmlBodyContentWrapper()
-    {
-        return null;
+        //                 )
+        //             )->getValue(),
+        //             Variable::from($this->_htmlBody())->default()->getValue()
+        //         )
+        //     )->getValue()
+        // ];
     }
 
     public function construct()
     {
-        return $this->_html()->construct();
+        return Variable::from($this->html)->getValue();
     }
 
     public function render()
