@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "iam-adty/php-component": "dev-develop"
+        "iam-adty/php-component-html": "dev-develop"
     },
     "require-dev": {
         "kint-php/kint": "^3.3"
